@@ -8,10 +8,16 @@ import {
 } from "react-router-dom";
 
 import api from "../api/axios";
+import {
+  useAuth
+} from "../context/AuthContext";
 
 const DashboardPage = () => {
   const navigate =
     useNavigate();
+
+  const { setUser } =
+    useAuth();
 
   const [tasks, setTasks] =
     useState([]);
@@ -93,7 +99,7 @@ const DashboardPage = () => {
         {
           status:
             task.status ===
-            "completed"
+              "completed"
               ? "pending"
               : "completed"
         }
@@ -110,6 +116,8 @@ const DashboardPage = () => {
       await api.post(
         "/auth/logout"
       );
+
+      setUser(null);
 
       navigate("/login");
     } catch (error) {
@@ -206,12 +214,11 @@ const DashboardPage = () => {
                 </div>
 
                 <span
-                  className={`px-3 py-1 rounded text-white ${
-                    task.status ===
+                  className={`px-3 py-1 rounded text-white ${task.status ===
                     "completed"
-                      ? "bg-green-500"
-                      : "bg-yellow-500"
-                  }`}
+                    ? "bg-green-500"
+                    : "bg-yellow-500"
+                    }`}
                 >
                   {task.status}
                 </span>

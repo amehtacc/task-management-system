@@ -103,7 +103,8 @@ export const loginUser = async (
     res.cookie("token", token, {
       httpOnly: true,
       secure: true,
-      sameSite: "none"
+      sameSite: "none",
+      path: "/"
     });
 
     await Activity.create({
@@ -139,7 +140,12 @@ export const logoutUser = async (
   req,
   res
 ) => {
-  res.clearCookie("token");
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+    path: "/"
+  });
 
   res.status(200).json({
     success: true,

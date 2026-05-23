@@ -8,10 +8,16 @@ import {
 } from "react-router-dom";
 
 import api from "../api/axios";
+import {
+  useAuth
+} from "../context/AuthContext";
 
 const AdminDashboardPage = () => {
   const navigate =
     useNavigate();
+
+  const { setUser } =
+    useAuth();
 
   const [analytics, setAnalytics] =
     useState({});
@@ -92,12 +98,15 @@ const AdminDashboardPage = () => {
 
     fetchActivities();
   }, []);
+  
 
   const handleLogout = async () => {
     try {
       await api.post(
         "/auth/logout"
       );
+
+      setUser(null);
 
       navigate("/login");
     } catch (error) {
@@ -417,12 +426,11 @@ const AdminDashboardPage = () => {
                   </span>
 
                   <span
-                    className={`font-semibold ${
-                      task.status ===
+                    className={`font-semibold ${task.status ===
                       "completed"
-                        ? "text-green-500"
-                        : "text-yellow-500"
-                    }`}
+                      ? "text-green-500"
+                      : "text-yellow-500"
+                      }`}
                   >
                     {task.status}
                   </span>
