@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import api from "../api/axios";
+import { Link } from "react-router-dom";
 
 const RegisterPage = () => {
   const navigate =
@@ -91,6 +92,16 @@ const RegisterPage = () => {
         >
           Register
         </button>
+        <p className="text-center mt-4">
+          Already have an account?{" "}
+
+          <Link
+            to="/login"
+            className="text-blue-500 font-semibold"
+          >
+            Login
+          </Link>
+        </p>
       </form>
     </div>
   );

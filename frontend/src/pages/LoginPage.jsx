@@ -11,6 +11,7 @@ import api from "../api/axios";
 import {
   useAuth
 } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   const navigate =
@@ -99,6 +100,16 @@ const LoginPage = () => {
         >
           Login
         </button>
+        <p className="text-center mt-4">
+          Don't have an account?{" "}
+
+          <Link
+            to="/register"
+            className="text-blue-500 font-semibold"
+          >
+            Register
+          </Link>
+        </p>
       </form>
     </div>
   );
