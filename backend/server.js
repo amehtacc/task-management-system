@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 // import morgan from "morgan";
 
 import connectDB from "./src/config/db.js";
+import createAdmin from "./src/utils/createAdmin.js";
 
 import authRoutes from "./src/routes/auth.routes.js";
 import taskRoutes from "./src/routes/task.routes.js";
@@ -13,6 +14,7 @@ import adminRoutes from "./src/routes/admin.routes.js";
 dotenv.config();
 
 connectDB();
+createAdmin();
 
 const app = express();
 
