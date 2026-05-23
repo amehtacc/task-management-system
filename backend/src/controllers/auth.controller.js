@@ -107,7 +107,7 @@ export const loginUser = async (
         process.env.NODE_ENV ===
         "production",
 
-      sameSite: "strict"
+      sameSite: "none"
     });
 
     await Activity.create({
